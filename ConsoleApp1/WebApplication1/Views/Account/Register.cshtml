@@ -1,0 +1,54 @@
+﻿@model ConferenceSystem.Models.User
+
+@{
+    ViewData["Title"] = "Register Staff";
+}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="bg-success bg-gradient p-4 text-white text-center">
+                <div class="bg-white text-success rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm mb-2" style="width: 65px; height: 65px;">
+                    <i class="bi bi-person-plus-fill fs-3"></i>
+                </div>
+                <h4 class="fw-bold mb-0">Staff Registration</h4>
+                <p class="small text-white-50 mb-0">Create credentials to manage event access</p>
+            </div>
+            <div class="card-body p-4 p-sm-5 bg-white">
+                <form asp-action="Register" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="FirstName" class="form-label fw-semibold small text-muted"></label>
+                            <input asp-for="FirstName" class="form-control rounded-3 border-light bg-light py-2" />
+                            <span asp-validation-for="FirstName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="LastName" class="form-label fw-semibold small text-muted"></label>
+                            <input asp-for="LastName" class="form-control rounded-3 border-light bg-light py-2" />
+                            <span asp-validation-for="LastName" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-semibold small text-muted"></label>
+                        <input asp-for="Email" class="form-control rounded-3 border-light bg-light py-2" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label fw-semibold small text-muted"></label>
+                        <input asp-for="Username" class="form-control rounded-3 border-light bg-light py-2" />
+                        <span asp-validation-for="Username" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label fw-semibold small text-muted"></label>
+                        <input asp-for="Password" type="password" class="form-control rounded-3 border-light bg-light py-2" />
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100 py-2 fw-semibold rounded-3 shadow-sm">Complete Registration</button>
+                </form>
+                <div class="mt-4 text-center border-top pt-3">
+                    <a asp-action="Login" class="text-decoration-none small fw-semibold text-muted"><i class="bi bi-arrow-left me-1"></i> Back to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

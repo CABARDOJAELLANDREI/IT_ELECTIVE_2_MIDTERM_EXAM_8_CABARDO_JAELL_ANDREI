@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-4 p-sm-5">
+                <div class="text-center mb-4">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center shadow-sm" style="width: 60px; height: 60px;">
+                        <i class="bi bi-box-arrow-in-right fs-4"></i>
+                    </div>
+                    <h3 class="fw-bold mt-3">Staff Sign In</h3>
+                    <p class="text-muted small">Conference Check-In Monitoring System</p>
+                </div>
+
+                <form asp-action="Login" method="post">
+                    @* This red error box will now ONLY show up if login fails or account doesn't exist *@
+                    @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger py-2 small mb-3"></div>
+                    }
+
+                    <div class="form-floating mb-3">
+                        <input name="username" class="form-control rounded-3" id="floatingUsername" placeholder="Username" required />
+                        <label for="floatingUsername">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input name="password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required />
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-3 shadow-sm">Login</button>
+                </form>
+
+                <div class="mt-4 text-center">
+                    <p class="small text-muted">Don't have an account? <a asp-action="Register" class="text-decoration-none fw-semibold">Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

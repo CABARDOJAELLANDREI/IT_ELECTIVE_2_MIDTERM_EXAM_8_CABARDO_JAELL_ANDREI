@@ -1,0 +1,77 @@
+﻿@model ConferenceSystem.Models.AttendeeVisit
+
+@{
+    ViewData["Title"] = "Attendee Details";
+}
+
+<div class="card shadow-lg border-0 rounded-4 p-4 p-sm-5 bg-white">
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom flex-wrap gap-3">
+        <div class="d-flex align-items-center">
+            <div class="bg-info bg-opacity-10 text-info p-3 rounded-circle me-3">
+                <i class="bi bi-info-circle-fill fs-3"></i>
+            </div>
+            <div>
+                <h3 class="fw-bold text-dark mb-1">Attendee Details</h3>
+                <p class="text-muted small mb-0">Ticket Identifier: <span class="font-monospace text-primary fw-semibold">@Model.TicketNumber</span></p>
+            </div>
+        </div>
+        <div>
+            <span class="badge @(Model.Status == ConferenceSystem.Models.AttendeeStatus.Present ? "bg-success" : "bg-secondary") px-3 py-2 fs-6 shadow-sm">
+                @Model.Status
+            </span>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3 border border-light">
+                <span class="text-muted small d-block mb-1 text-uppercase fw-bold" style="font-size: 0.75rem;">Full Name</span>
+                <strong class="fs-5 text-dark">@Model.FirstName @Model.LastName</strong>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3 border border-light">
+                <span class="text-muted small d-block mb-1 text-uppercase fw-bold" style="font-size: 0.75rem;">Organization / Company</span>
+                <strong class="fs-5 text-dark">@Model.Organization</strong>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3 border border-light">
+                <span class="text-muted small d-block mb-1 text-uppercase fw-bold" style="font-size: 0.75rem;">Contact Information</span>
+                <div class="text-dark"><i class="bi bi-envelope me-2 text-muted"></i>@Model.Email</div>
+                <div class="text-dark mt-1"><i class="bi bi-telephone me-2 text-muted"></i>@Model.ContactNumber</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3 border border-light">
+                <span class="text-muted small d-block mb-1 text-uppercase fw-bold" style="font-size: 0.75rem;">Event Session</span>
+                <strong class="fs-6 text-primary"><i class="bi bi-calendar-event me-2"></i>@Model.EventName</strong>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3 border border-light">
+                <span class="text-muted small d-block mb-1 text-uppercase fw-bold" style="font-size: 0.75rem;">Check-In Timestamp</span>
+                <span class="text-dark"><i class="bi bi-clock-history me-2 text-success"></i>@Model.CheckInTime.ToString("MMMM dd, yyyy - hh:mm tt")</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3 border border-light">
+                <span class="text-muted small d-block mb-1 text-uppercase fw-bold" style="font-size: 0.75rem;">Check-Out Timestamp</span>
+                <span class="text-dark"><i class="bi bi-clock-history me-2 text-secondary"></i>@(Model.CheckOutTime.HasValue? Model.CheckOutTime.Value.ToString("MMMM dd, yyyy - hh:mm tt") : "Still Inside Venue")</span>
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.Notes))
+        {
+            <div class="col-12">
+                <div class="p-3 bg-light rounded-3 border border-light">
+                    <span class="text-muted small d-block mb-1 text-uppercase fw-bold" style="font-size: 0.75rem;">Special Notes</span>
+                    <span class="text-dark">@Model.Notes</span>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div>
+        <a asp-action="Index" class="btn btn-secondary rounded-pill px-4 shadow-sm fw-semibold py-2"><i class="bi bi-arrow-left me-1"></i> Back to Dashboard</a>
+    </div>
+</div>
